@@ -1,6 +1,6 @@
-from src import decode_inst
+from src import decode_asm
 from src import cpu
 
 c = cpu.Cpu()
-c.process(decode_inst.decode_inst("inc r1"))
+decode_asm.decode_asm('test.asm', c)
 print(c.get_state())
