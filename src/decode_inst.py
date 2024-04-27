@@ -15,6 +15,8 @@ def decode_inst (line : str) -> str | Instruction:
             else:
                 #TODO: handle error
                 sys.exit(-1)
+        else:
+            op_1 = decode_op(s[1])
         return Instruction(i_type=i_type, op_1=op_1, op_2=op_2)
                 
 def decode_op (op : str) -> Registers | int:

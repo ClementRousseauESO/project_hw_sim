@@ -1,3 +1,6 @@
 from src import decode_inst
+from src import cpu
 
-decode_inst.decode_inst("inc r1,r1")
+c = cpu.Cpu()
+c.process(decode_inst.decode_inst("inc r1"))
+print(c.get_state())
