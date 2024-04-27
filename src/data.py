@@ -4,6 +4,8 @@ from enum import Enum
 class Inst_Type(Enum):
     inc = 1
     brel = 2
+    call = 3
+    ret = 4
 
 class Registers(Enum):
     r1 = 1

@@ -49,6 +49,12 @@ def _replace_label(i_type: Inst_Type, op: str, addr: int, labels: dict[str, int]
             else:
                 #TODO: Handle error
                 sys.exit(-1)
+        elif i_type == Inst_Type.call:
+            if type(d) == int:
+                return d
+            else:
+                #TODO: Handle error
+                sys.exit(-1)
     else:
         #TODO: Handle error
         sys.exit(-1)
