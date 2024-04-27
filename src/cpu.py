@@ -14,9 +14,14 @@ class Cpu:
         self._state = Cpu_State(PC=0, Regs=regs)
         
     def process (self, i : Instruction) -> int:
+        pc_increment = True
         if i.i_type == Inst_Type.inc:
             self._state.Regs[i.op_1] += 1
-        self._state.PC += 1
+        elif i.i_type == Inst_Type.brel:
+            self._state.PC += i.op_1
+            pc_increment = False
+        if pc_increment:
+            self._state.PC += 1
         return self._state.PC
             
     def get_state (self) -> Cpu_State:

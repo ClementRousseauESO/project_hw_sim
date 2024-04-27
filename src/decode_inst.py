@@ -34,7 +34,7 @@ def decode_op (op : str) -> Registers | int:
         else:
             #TODO: handle error
             sys.exit(-1)
-    elif op.isnumeric():
+    elif op.isnumeric() or (op[0] == '-' and op[1:].isnumeric()):
         return int(op)
     else:
         #TODO: handle error
