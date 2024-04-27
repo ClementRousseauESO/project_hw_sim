@@ -7,8 +7,7 @@ def decode_asm (file: str, cpu: Cpu, mem : Memory) -> None:
     pc = 0
     last_inst = _fill_inst_mem(file=file, mem=mem)
     while pc < last_inst:
-        inst = mem.get(pc)
-        pc = cpu.process(inst)
+        pc = cpu.step(mem)
             
 def _fill_inst_mem(file: str, mem: Memory) -> int:
     labels = {}
@@ -37,7 +36,7 @@ def _fill_inst_mem(file: str, mem: Memory) -> int:
 def _replace_label(i_type: Inst_Type, op: str, addr: int, labels: dict[str, int]) -> Registers | int:
     if op in labels:
         d = labels[op]
-        if i_type == Inst_Type.inc:
+        if i_type == Inst_Type.inc or i_type == Inst_Type.push or i_type == Inst_Type.pop:
             if type(d) == str and d in Registers.__members__:
                 return Registers[d]
             else:
@@ -51,6 +50,14 @@ def _replace_label(i_type: Inst_Type, op: str, addr: int, labels: dict[str, int]
                 sys.exit(-1)
         elif i_type == Inst_Type.call:
             if type(d) == int:
+                return d
+            else:
+                #TODO: Handle error
+                sys.exit(-1)
+        elif i_type == Inst_Type.ldi or i_type == Inst_Type.lds or i_type == Inst_Type.sts:
+            if type(d) == str and d in Registers.__members__:
+                return Registers[d]
+            elif type(d) == int:
                 return d
             else:
                 #TODO: Handle error

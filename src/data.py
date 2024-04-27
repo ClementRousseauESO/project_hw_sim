@@ -6,9 +6,15 @@ class Inst_Type(Enum):
     brel = 2
     call = 3
     ret = 4
+    ldi = 5
+    lds = 6
+    sts = 7
+    push = 8
+    pop = 9
 
 class Registers(Enum):
     r1 = 1
+    sp = 2
 
 @dataclass
 class Instruction:
