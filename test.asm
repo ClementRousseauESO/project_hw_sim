@@ -1,6 +1,7 @@
-inc r1
-brel 2
-brel 3
-inc r1
-brel -2
-inc r1
+start:
+            inc     r1
+            brel    jmp_1
+jmp_2:      brel    jmp_3
+jmp_1:      inc     r1
+            brel    jmp_2
+jmp_3:      inc     r1

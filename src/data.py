@@ -11,5 +11,7 @@ class Registers(Enum):
 @dataclass
 class Instruction:
     i_type : Inst_Type
-    op_1 : Registers | int | None
-    op_2 : Registers | int | None
+    op_1 : Registers | int | str | None
+    op_2 : Registers | int | str | None
+    
+default_instruction = Instruction(Inst_Type(1), None, None)
